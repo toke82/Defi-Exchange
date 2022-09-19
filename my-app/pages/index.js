@@ -30,8 +30,8 @@ export default function Home() {
   /** Variable to keep track of amount */
   // `ethBalance` keeps track of the amount of Eth held by the user's account
   const [ethBalance, setEthBalance] = useState(zero);
-  // `reserveCD` keeps track of the Crypto Dev tokens Reserve balance in the Exchange contract
-  const [reserveCD, setReserveCD] = useState(zero);
+  // `reservedCD` keeps track of the Crypto Dev tokens Reserve balance in the Exchange contract
+  const [reservedCD, setReservedCD] = useState(zero);
   // Keeps track of the ether balance in the contract
   const [ethBalanceContract, setEthBalanceContract] = useState(zero);
   // cdBalance is the amount of `CD` tokens held by the users account
@@ -80,13 +80,13 @@ export default function Home() {
       // get the amount of `Crypto Dev` LP tokens held by the user
       const _lpBalance = await getLPTokensBalance(provider, address);
       // gets the amount of `CD` tokens that are present in the reserve of the `Exchange contract`
-      const _reserveCD = await getReserveOfCDTokens(provider);
+      const _reservedCD = await getReserveOfCDTokens(provider);
       // Get the ether reserves in the contract
       const _ethBalanceContract = await getEtherBalance(provider, null, true);
       setEthBalance(_ethBalance);
       setCDBalance(_cdBalance);
       setLPBalance(_lpBalance);
-      setReserveCD(_reserveCD);
+      setReservedCD(_reservedCD);
       setEthBalanceContract(_ethBalanceContract);
     } catch (err) {
       console.error(err);
@@ -145,7 +145,7 @@ export default function Home() {
           provider,
           ethSelected,
           _ethBalance,
-          reserveCD
+          reservedCD
         );
         setTokenToBeReceivedAfterSwap(amountOfTokens);
       } else {
